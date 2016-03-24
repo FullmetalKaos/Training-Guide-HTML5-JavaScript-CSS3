@@ -4,14 +4,14 @@
     this.calculatorNamespace = this.calculatorNamespace || {};
     var ns = this.calculatorNamespace;
 
-    function initialize() {
+    ns.initialize = function() {
         var calculator = new ns.Calculator();
         $('button[id^="btnNumber"]').on('click', calculator.numberClick);
         $('#btnPlus').on('click', calculator.plusClick);
         $('#btnMinus').on('click', calculator.minusClick);
         $('#btnClearEntry').on('click', calculator.clearEntry);
         $('#btnClear').on('click', calculator.clear);
-        clear();
+        calculator.clear();
     }
 
     ns.Calculator = (function () {
@@ -20,18 +20,18 @@
         }
 
         Calculator.prototype.numberClick = function () {
-            $('#txtInput').val($('txtInput').val() == '0' ?
+            $('#txtInput').val($('#txtInput').val() == '0' ?
                 $(this).text() : $('#txtInput').val() + $(this).text());
         };
 
         Calculator.prototype.plusClick = function () {
             $('#txtResult').val(Number($('#txtResult').val()) +
-                Number($('txtInput').val()));
+                Number($('#txtInput').val()));
             Calculator.prototype.clearEntry();
         };
 
         Calculator.prototype.minusClick = function () {
-            $('#txtResult').val(Number($('txtResult').val()) -
+            $('#txtResult').val(Number($('#txtResult').val()) -
                 Number($('#txtInput').val()));
             Calculator.prototype.clearEntry();
         };
